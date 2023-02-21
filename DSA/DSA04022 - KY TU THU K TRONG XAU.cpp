@@ -23,7 +23,7 @@ main() {
 	while (t--) {
 		long long n, k;
 		cin >> n >> k;
-		cout << LastK(n, k) << '\n';
+		cout << (char)('@' +LastK(n, k)) << '\n';
 	}
 	return 0;
 }
