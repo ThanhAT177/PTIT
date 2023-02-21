@@ -3,7 +3,7 @@
 using namespace std;
 long long f[100];
 
-char fiboWord(int n, long long k) {
+char FiboWord(int n, long long k) {
 	if (n == 1) {
 		return '0';
 	}
@@ -11,9 +11,9 @@ char fiboWord(int n, long long k) {
 		return '1';	
 	}
 	if (k <= f[n - 2]) {
-			return fiboWord(n - 2, k);
+			return FiboWord(n - 2, k);
 		}
-		return fiboWord(n - 1, k - f[n - 2]);
+		return FiboWord(n - 1, k - f[n - 2]);
 }
 
 main() {
@@ -29,7 +29,7 @@ main() {
 	while (t--) {
 		long long n, i;
 		cin >> n >> i;
-		cout << fiboWord(n, i) << '\n';
+		cout << FiboWord(n, i) << '\n';
 	}
 	return 0;
 }
