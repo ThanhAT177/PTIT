@@ -1,15 +1,38 @@
 #include <iostream>
-#include <unordered_set>
+#include <algorithm>
+#include <vector>
+
 using namespace std;
 
-void Search(int a[], int n) {
-	
-	for (int i = 0; i < n; ++i) {
-		if (set.count(a[i]) > 0) {
-			cout << a[i] << '\n';
-			return;
+bool BinarySearch(int a[], int l, int h, int x) {
+	while (l < h) {
+		int m = (l + h)/2;
+		if (a[m] == x) {
+			return true;
 		}
-		set.insert(a[i]);
+		if (a[m] < x) {
+			l = m + 1;
+		} else {
+			h = m - 1;
+		}
+	}
+	return false;
+}
+
+void Solve() {
+	int n;
+	cin >> n;
+	int a[n];
+	for (int i = 0; i < n; ++i) {
+		cin >> a[i];
+	}
+	for (int i = 0; i < n - 1; ++i) {
+		for (int j = i + 1; j < n; ++j) {
+			if (a[j] == a[i]) {
+				cout << a[i] << '\n';
+				return;
+			}
+		}
 	}
 	cout << "NO\n";
 }
@@ -20,13 +43,7 @@ main() {
 	int t;
 	cin >> t;
 	while (t--) {
-		int n;
-		cin >> n;
-		int a[n];
-		for (int i = 0; i < n; ++i) {
-			cin >> a[i];
-		}
-		Search(a, n);
+		Solve();
 	}
 	return 0;
 }

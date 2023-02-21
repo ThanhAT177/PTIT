@@ -1,13 +1,7 @@
 #include <iostream>
-using namespace std;
 
-void Screen(int a[], int step, int n) {
-	cout << "Buoc " << step << ": ";
-	for (int i = 0; i < n; ++i) {
-		cout << a[i] << ' ';
-	}
-	cout << '\n';
-}
+using namespace std;
+int count;
 
 void Swap(int &a, int &b) {
 	int tmp = a;
@@ -26,20 +20,26 @@ void SelectionSort(int a[], int n) {
 		}
 		if (min_index != i) {
 			Swap(a[i], a[min_index]);
+			++count;
 		}
-		Screen(a, i + 1, n);
 	}
 }
 
 main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(nullptr);
-	int n;
-	cin >> n;
-	int a[n];
-	for (int i = 0; i < n; ++i) {
-		cin >> a[i];
+	int t;
+	cin >> t;
+	while (t--) {
+		count = 0;
+		int n;
+		cin >> n;
+		int a[n];
+		for (int i = 0; i < n; ++i) {
+			cin >> a[i];
+		}
+		SelectionSort(a, n);
+		cout << count << '\n';
 	}
-	SelectionSort(a, n);
 	return 0;
 }
