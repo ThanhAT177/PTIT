@@ -1,28 +1,26 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
-int n, x, a[21], c[21] = {};
-bool ok = true;
+bool ok;
 
-void Screen() {
-	cout << '[';
-	for (int i = 0; c[i]; ++i) {
-		cout << c[i] << ' ';
+void Try(int a[], int n, int x, vector<int> ans, int pos) {
+	if (x < 0) {
+		return;
 	}
-	cout << "]";
-}
-
-void Backtrack(int i, int s) {//i là vị trí trong mảng đầu
-	for (int j = 1; j <= n; ++j) {//j là size?
-		if (a[j] >= c[i - 1] && s + a[i] <= x) {
-			c[i] = a[j];
-			s += a[j];
-			if (s == x) {
-				ok = false;
-				Screen();
-			} else Backtrack(i + 1, s);
-			s -= a[i];
+	if (x == 0) {
+		ok = false;
+		cout << '[';
+		for (int i = 0; i < ans.size() - 1; ++i) {
+			cout << ans[i] << ' ';
 		}
+		cout << ans.back() << ']';
+	}
+	for (int i = pos; i < n; ++i) {
+		ans.emplace_back(a[i]);
+		Try(a, n, x - a[i], ans, i);
+		ans.pop_back();
 	}
 }
 
@@ -32,15 +30,20 @@ main() {
 	int t;
 	cin >> t;
 	while (t--) {
+		ok = true;
+		int n, x;
 		cin >> n >> x;
-		for (int i = 1; i <= n; ++i) {
+		int a[n];
+		for (int i = 0; i < n; ++i) {
 			cin >> a[i];
 		}
-		Backtrack(1, 0);
+		sort(a, a + n);
+		Try(a, n, x, {}, 0);
 		if (ok) {
 			cout << "-1\n";
 		} else {
 			cout << '\n';
 		}
+	}
 	return 0;
-}}
+}

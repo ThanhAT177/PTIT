@@ -14,7 +14,9 @@ main() {
 		stringstream ss(s);
 		int near;
 		while (ss >> near) {
-			cout << i << ' ' << near << '\n';
+			if (near > i) {
+				cout << i << ' ' << near << '\n';
+			}
 		}
 	}
 	return 0;
