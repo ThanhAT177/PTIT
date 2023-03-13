@@ -2,13 +2,18 @@
 
 using namespace std;
 
+int TernarySearch(int a[], int l, int h, int x) {
+	
+}
+
 int BinarySearch(int a[], int l, int h, int x) {
 	while (l <= h) {
 		int mid = (l + h)/2;
-		if (a[mid] == x) {
+		if (a[mid] > a[mid + 1]) {
 			return mid + 1;
 		}
-		
+		++l;
+		--h;
 	}
 	return -1;
 }
@@ -20,7 +25,7 @@ void Solve() {
 	for (int i = 0; i < n; ++i) {
 		cin >> a[i];
 	}
-	cout << BinarySearch(a, 0, n - 1, x) << '\n';
+	
 }
 
 main() {
