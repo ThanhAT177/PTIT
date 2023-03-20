@@ -1,5 +1,11 @@
 #include <iostream>
+#include <algorithm>
+
 using namespace std;
+
+bool Cmp(int a, int b) {
+	return a > b;
+}
 
 main() {
 	ios_base::sync_with_stdio(false);
@@ -13,15 +19,14 @@ main() {
 		for (int i = 0; i < n; ++i) {
 			cin >> a[i];
 		}
-		while (n) {
-			cout << '[';
-			for (int i = 0; i < n - 1; ++i) {
-				cout << a[i] << ' ';
-				a[i] += a[i + 1];
+		sort(a, a + n, Cmp);
+		int min = a[0] - a[n - 1];
+		for (int i = 0; i < n - 1; ++i) {
+			if (a[i] - a[i + 1] < min) {
+				min = a[i] - a[i + 1];
 			}
-			cout << a[n - 1] << "]\n";
-			--n;
 		}
+		cout << min << '\n';
 	}
 	return 0;
 }

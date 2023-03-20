@@ -1,5 +1,15 @@
 #include <iostream>
+
 using namespace std;
+
+void Qhd(int a[], int n) {
+	int s = 0, e = 0;
+	for (int i = 0; i < n; ++i) {
+		e = max(a[i], e + a[i]);
+		s = max(s, e);
+	}
+	cout << s << '\n';
+}
 
 main() {
 	ios_base::sync_with_stdio(false);
@@ -13,15 +23,7 @@ main() {
 		for (int i = 0; i < n; ++i) {
 			cin >> a[i];
 		}
-		while (n) {
-			cout << '[';
-			for (int i = 0; i < n - 1; ++i) {
-				cout << a[i] << ' ';
-				a[i] += a[i + 1];
-			}
-			cout << a[n - 1] << "]\n";
-			--n;
-		}
+		Qhd(a, n);
 	}
 	return 0;
 }
